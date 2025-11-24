@@ -3,7 +3,7 @@ import { OrbitControls, useTexture, Html, useProgress } from '@react-three/drei'
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
 import { useState, Suspense } from 'react'
 import { useControls } from 'leva'
-import './ImageDepthMaterial'
+import { ImageDepthMaterial } from './ImageDepthMaterial'
 
 const IMAGES = [
   {
@@ -79,7 +79,7 @@ function Scene({ activeImage }: { activeImage: typeof IMAGES[0] }) {
       
       <mesh>
         <planeGeometry args={[5, 5, 256, 256]} />
-        <imageDepthMaterial 
+        <ImageDepthMaterial 
           uTexture={colorMap} 
           uDepthMap={depthMap} 
           uDisplacement={displacement}

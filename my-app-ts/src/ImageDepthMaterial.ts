@@ -1,11 +1,12 @@
 import { shaderMaterial } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
+import { createElement } from 'react'
 
-const ImageDepthMaterial = shaderMaterial(
+const ImageDepthMaterialImpl = shaderMaterial(
   {
     uTexture: new THREE.Texture(),
-    uDepthMap: new THREE.Texture(), 
+    uDepthMap: new THREE.Texture(),
     uDisplacement: 0.5,
   },
   `
@@ -33,14 +34,8 @@ const ImageDepthMaterial = shaderMaterial(
   `
 )
 
-extend({ ImageDepthMaterial })
+extend({ ImageDepthMaterial: ImageDepthMaterialImpl })
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      imageDepthMaterial: any
-    }
-  }
+export const ImageDepthMaterial = (props: any) => {
+  return createElement('imageDepthMaterial', props)
 }
-
-export { ImageDepthMaterial }
